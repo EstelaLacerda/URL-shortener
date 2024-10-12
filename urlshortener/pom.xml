@@ -8,7 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> 
     </parent>
 
     <groupId>com.estela.urlshortener</groupId>
@@ -17,28 +17,28 @@
     <name>urlshortener</name>
     <description>Demo project for Spring Boot</description>
     
-    <url/> <!-- Preencha a URL do seu repositório aqui -->
+    <url/> 
     
     <licenses>
         <license>
-            <name/> <!-- Preencha o nome da licença -->
-            <url/> <!-- Preencha a URL da licença -->
+            <name/> 
+            <url/> 
         </license>
     </licenses>
     
     <developers>
         <developer>
-            <id/> <!-- Preencha o ID do desenvolvedor -->
-            <name/> <!-- Preencha o nome do desenvolvedor -->
-            <email/> <!-- Preencha o e-mail do desenvolvedor -->
+            <id/> 
+            <name/> 
+            <email/> 
         </developer>
     </developers>
     
     <scm>
-        <connection/> <!-- Preencha a conexão SCM -->
-        <developerConnection/> <!-- Preencha a conexão de desenvolvedor -->
-        <tag/> <!-- Preencha a tag -->
-        <url/> <!-- Preencha a URL do seu repositório -->
+        <connection/> 
+        <developerConnection/> 
+        <tag/> 
+        <url/> 
     </scm>
 
     <properties>

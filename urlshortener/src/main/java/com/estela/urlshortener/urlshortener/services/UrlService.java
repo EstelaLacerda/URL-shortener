@@ -34,7 +34,9 @@ public class UrlService {
     }
 
     public String registerUrl(String originalUrl) {
-        
+        if (!isThisValidUrl(originalUrl)) {
+            throw new IllegalArgumentException("Esse formato de URL é inválido.");
+        }
 
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
@@ -102,5 +104,10 @@ public class UrlService {
             id /= 62;
         }
         return encoded.reverse().toString();
+    }
+
+    private boolean isThisValidUrl(String url) {
+        String urlRegex = "^(https?://)?(www\\.)?([\\w-]+\\.)+[a-zA-Z]{2,6}(/\\S*)?$";
+        return url != null && url.matches(urlRegex);
     }
 }

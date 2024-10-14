@@ -34,6 +34,8 @@ public class UrlService {
     }
 
     public String registerUrl(String originalUrl) {
+        
+
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
         

@@ -4,16 +4,17 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.estela.urlshortener.urlshortener.models.Url;
 import com.estela.urlshortener.urlshortener.repository.UrlRepository;
 
+@Service
 public class UrlService {
 
+    @Autowired
     private UrlRepository urlRepository;
-
-    public void insertUrl(Url newUrl) {
-        urlRepository.save(newUrl);
-    }
 
     public List<Url> getAllUrl() {
         return urlRepository.findAll();
@@ -35,16 +36,18 @@ public class UrlService {
     public String registerUrl(String originalUrl) {
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
-
-        url = urlRepository.save(url);
-
+    
+        // Gere a URL encurtada antes de salvar
         String shortenedUrl = encodeBase62(url.getId());
-
+    
         url.setShortenedUrl(shortenedUrl);
-        urlRepository.save(url);
-
+    
+        // Agora, salve a entidade apenas uma vez
+        url = urlRepository.save(url);
+    
         return shortenedUrl;
     }
+    
 
     public String accessShortenedUrl(String shortenedUrl) {
         try {
@@ -64,7 +67,7 @@ public class UrlService {
         }
     }
 
-    public Url visualizarEstatisticas(String shortenedUrl) {
+    public Url viewStatistics(String shortenedUrl) {
         try {
             Url url = urlRepository.findByShortenedUrl(shortenedUrl);
 

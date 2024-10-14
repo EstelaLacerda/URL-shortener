@@ -36,15 +36,15 @@ public class UrlService {
     public String registerUrl(String originalUrl) {
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
-    
-        // Gere a URL encurtada antes de salvar
-        String shortenedUrl = encodeBase62(url.getId());
-    
-        url.setShortenedUrl(shortenedUrl);
-    
-        // Agora, salve a entidade apenas uma vez
+        
         url = urlRepository.save(url);
     
+        String shortenedUrl = encodeBase62(url.getId());
+        
+        url.setShortenedUrl(shortenedUrl);
+        
+        url = urlRepository.save(url);
+        
         return shortenedUrl;
     }
     

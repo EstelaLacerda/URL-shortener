@@ -6,6 +6,5 @@ import com.estela.urlshortener.urlshortener.models.Url;
 
 @Repository
 public interface UrlRepository extends JpaRepository<Url, Long> {
-    // Método para encontrar a URL original pela URL encurtada
     Url findByShortenedUrl(String shortenedUrl);
 }

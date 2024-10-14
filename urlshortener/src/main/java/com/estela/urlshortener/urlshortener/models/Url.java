@@ -23,9 +23,7 @@ public class Url {
     @Column(name = "accessCount")
     private int accessCount;
 
-    // Construtores
     public Url() {
-        // Construtor vazio para o JPA
     }
 
     public Url(String originalUrl, String shortenedUrl) {

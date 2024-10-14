@@ -16,7 +16,6 @@ public class UrlController {
     @Autowired
     private UrlService urlService;
 
-    // Endpoint para cadastrar uma nova URL
     @PostMapping("/create")
     public ResponseEntity<String> registerUrl(@RequestBody String originalUrl) {
         try {
@@ -27,7 +26,6 @@ public class UrlController {
         }
     }
 
-    // Endpoint para acessar a URL encurtada e redirecionar para a original
     @GetMapping("/{shortenedUrl}")
     public ResponseEntity<Void> accessShortenedUrl(@PathVariable String shortenedUrl) {
         try {
@@ -40,7 +38,6 @@ public class UrlController {
         }
     }
 
-    // Endpoint para visualizar estatísticas da URL encurtada
     @GetMapping("/stats/{shortenedUrl}")
     public ResponseEntity<Url> getStatistics(@PathVariable String shortenedUrl) {
         Url urlStats = urlService.viewStatistics(shortenedUrl);

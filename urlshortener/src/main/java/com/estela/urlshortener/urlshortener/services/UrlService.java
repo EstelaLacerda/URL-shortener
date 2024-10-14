@@ -40,18 +40,17 @@ public class UrlService {
 
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
-        
+
         url = urlRepository.save(url);
-    
+
         String shortenedUrl = encodeBase62(url.getId());
-        
+
         url.setShortenedUrl(shortenedUrl);
-        
+
         url = urlRepository.save(url);
-        
+
         return shortenedUrl;
     }
-    
 
     public String accessShortenedUrl(String shortenedUrl) {
         try {
@@ -67,7 +66,7 @@ public class UrlService {
             }
         } catch (Exception e) {
             System.out.println("Erro ao acessar a URL: " + e.getMessage());
-            return "URL não encontrada."; 
+            return "URL não encontrada.";
         }
     }
 
@@ -85,13 +84,13 @@ public class UrlService {
                 System.out.println("Número total de Acessos: " + totalAccess);
                 System.out.println("Média de Acessos por Dia: " + avgAccessDay);
 
-                return url; 
+                return url;
             } else {
                 throw new Exception("URL encurtada não encontrada.");
             }
         } catch (Exception e) {
             System.out.println("Erro ao visualizar as estatísticas: " + e.getMessage());
-            return null; 
+            return null;
         }
     }
 
@@ -110,4 +109,5 @@ public class UrlService {
         String urlRegex = "^(https?://)?(www\\.)?([\\w-]+\\.)+[a-zA-Z]{2,6}(/\\S*)?$";
         return url != null && url.matches(urlRegex);
     }
+
 }

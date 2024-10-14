@@ -1,6 +1,7 @@
 package com.estela.urlshortener.urlshortener.models;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -61,8 +62,8 @@ public class Url {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(LocalDateTime localDate) {
+        this.createdAt = localDate;
     }
 
     public int getAccessCount() {

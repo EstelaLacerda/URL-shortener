@@ -2,13 +2,13 @@ package com.estela.urlshortener.urlshortener.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -74,10 +74,20 @@ public class UrlServiceTest {
     public void testRegisterUrl_InvalidFormat() {
         String invalidUrl = "htp://invalid-url";
 
-        // Verifica se uma exceção é lançada ao registrar uma URL com formato inválido
         assertThrows(IllegalArgumentException.class, () -> {
             urlService.registerUrl(invalidUrl);
         });
     }
 
+    @Test
+    public void testViewStatistics_NotFound() {
+        String shortenedUrl = "short.ly/invalid";
+
+        when(urlRepository.findByShortenedUrl(shortenedUrl)).thenReturn(null);
+
+        Url result = urlService.viewStatistics(shortenedUrl);
+
+        assertNull(result);
+        verify(urlRepository, times(1)).findByShortenedUrl(shortenedUrl);
+    }
 }

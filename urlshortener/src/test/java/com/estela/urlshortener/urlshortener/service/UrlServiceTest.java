@@ -9,6 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -43,7 +44,7 @@ public class UrlServiceTest {
 
         assertEquals(shortenedUrl, url.getShortenedUrl());
 
-        verify(urlRepository, times(2)).save(any(Url.class)); 
+        verify(urlRepository, times(2)).save(any(Url.class));
     }
 
     @Test
@@ -67,6 +68,16 @@ public class UrlServiceTest {
 
         assertNotNull(shortenedUrl);
         assertEquals(existingUrl.getShortenedUrl(), shortenedUrl);
+    }
+
+    @Test
+    public void testRegisterUrl_InvalidFormat() {
+        String invalidUrl = "htp://invalid-url";
+
+        // Verifica se uma exceção é lançada ao registrar uma URL com formato inválido
+        assertThrows(IllegalArgumentException.class, () -> {
+            urlService.registerUrl(invalidUrl);
+        });
     }
 
 }
